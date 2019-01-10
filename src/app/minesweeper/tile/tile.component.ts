@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import { Tile } from '../../classes/tile';
+import { Tile } from '../classes/tile';
 
 @Component({
   selector: 'tile',

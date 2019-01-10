@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
-import { Board } from '../../classes/board';
+import { Board } from '../classes/board';
 import { TileComponent } from '../tile/tile.component';
-import { Tile } from '../../classes/tile';
+import { Tile } from '../classes/tile';
 
 @Component({
   selector: 'board',

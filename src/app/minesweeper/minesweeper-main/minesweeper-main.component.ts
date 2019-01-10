@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BoardComponent } from '../board/board.component';
-import { Board } from '../../classes/board';
+import { Board } from '../classes/board';
 
 @Component({
   selector: 'app-minesweeper-main',
