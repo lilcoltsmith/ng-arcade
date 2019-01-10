@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <div class="m-1">
+      <button class="btn btn-primary" (click)="easy()">Easy</button>
+      <button class="btn btn-primary" (click)="medium()">Medium</button>
+      <button class="btn btn-primary" (click)="hard()">Hard</button>
+  </div>
+  <div class="minefield">
+    <br/>
+    <board [board]="board" [action]="action"></board>
+    <br/>
+    <button class="btn btn-primary btn-sm" (click)="setActionUncovor()">Uncovor</button>
+    <button class="btn btn-primary btn-sm" (click)="setActionFlag()">Flag</button>
+  </div>
+</div>
