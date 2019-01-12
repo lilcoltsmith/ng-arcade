@@ -15,7 +15,7 @@ export class FlappyComponent implements OnInit {
 
 private p5: any;
 private canvas: p5;
-private score: number;
+private score: number = 0;
 
   constructor() { }
 
@@ -36,9 +36,13 @@ private score: number;
 
         if(gameStart) {
           for(var i = pipes.length - 1; i >= 0; i--){
-            if(pipes[i].hits(bird)){
+            if(pipes[i].hit(bird)){
               this.freezeGame(bird, pipes);
             }
+            else if(pipes[i].past(bird)) {
+              this.score++;
+            }
+
             pipes[i].show();
             pipes[i].update();
 
@@ -53,6 +57,10 @@ private score: number;
           if(s.frameCount % 100 == 0){
               pipes.push(new FlappyPipe(this.canvas));
           }
+
+          this.canvas.textSize(32);
+          this.canvas.fill(255);
+          this.canvas.text('Score: ' + this.score.toString(), 1000, 768);
         }
         else {
           this.canvas.textSize(32);

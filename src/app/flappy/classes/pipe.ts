@@ -12,6 +12,7 @@ export class FlappyPipe {
 
     highlight: boolean = false;
     frozen: boolean;
+    counted: boolean = false;
     
     constructor(canvas: any){
         this.canvas = canvas;
@@ -38,13 +39,25 @@ export class FlappyPipe {
         return state;
     }
 
-    hits(bird: any){
+    hit(bird: any) {
         if(bird.y-(bird.size/2) < this.top || bird.y+(bird.size/2) > this.bottom) {
             if(bird.x+(bird.size/2) > this.x && bird.x-(bird.size/2) < this.x+this.width) {
                 this.highlight = true;
                 return true;
             }
         }
+    }
+
+    past(bird: any) {
+        var state: boolean;
+        if((this.x + this.width) < (bird.x - (bird.size/2)) && !this.counted) { 
+            state = true; 
+            this.counted = true;
+        } 
+        else {
+            state = false;
+        }
+        return state;
     }
 
     freeze() {
