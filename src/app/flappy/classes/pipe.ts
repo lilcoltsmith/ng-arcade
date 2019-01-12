@@ -9,6 +9,8 @@ export class FlappyPipe {
     width: number;
     speed: number;
     canvas: any;
+
+    highlight: boolean = false;
     
     constructor(canvas: any){
         this.canvas = canvas;
@@ -21,8 +23,26 @@ export class FlappyPipe {
 
     show() {
         this.canvas.fill(255);
+        if(this.highlight) {
+            this.canvas.fill(255, 0, 0);
+        }
         this.canvas.rect(this.x, 0, this.width, this.top);
         this.canvas.rect(this.x, this.bottom, this.width, this.canvas.height);
+    }
+
+    offscreen(): boolean {
+        var state;
+        this.x < -this.width ? state = true : state = false;
+        return state;
+    }
+
+    hits(bird: any){
+        if(bird.y < this.top || bird.y > this.bottom) {
+            if(bird.x >this.x && bird.x < this.x+this.width) {
+                this.highlight = true;
+                return true;
+            }
+        }
     }
 
     update() {

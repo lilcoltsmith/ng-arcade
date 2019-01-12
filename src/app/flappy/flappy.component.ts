@@ -21,33 +21,39 @@ private p5;
       var bird;
       var pipes = [];
       s.setup = () => {
-          s.createCanvas(1280, 720);
-          bird = new Bird(canvas);
-          pipes.push(new FlappyPipe(canvas));
+        s.createCanvas(1280, 720);
+        bird = new Bird(canvas);
+        pipes.push(new FlappyPipe(canvas));
       };
 
       s.draw = () => {
-          s.background(51);
-          bird.show();
-          bird.update();
+        s.background(51);
 
-          if(s.frameCount % 70 == 0){
-              pipes.push(new FlappyPipe(canvas));
-          }
-          
-          for(var i = pipes.length -1; i >= 0; i--){
-              pipes[i].show();
-              pipes[i].update();
-              if(pipes[i].x < 0){
-                  pipes.splice(i, 1);
-              }
-          }
+        for(var i = pipes.length - 1; i >= 0; i--){
+            pipes[i].show();
+            pipes[i].update();
+
+            if(pipes[i].hits(bird)){
+                
+            }
+
+            if(pipes[i].offscreen()){
+                pipes.splice(i, 1);
+            }
+        }
+
+        bird.show();
+            bird.update();
+
+        if(s.frameCount % 100 == 0){
+            pipes.push(new FlappyPipe(canvas));
+        }
       };
 
       s.keyPressed = () => {
-          if(s.key == ' ') {
-              bird.flap();
-          }
+        if(s.key == ' ') {
+            bird.flap();
+        }
       };
   }
 
