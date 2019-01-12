@@ -10,6 +10,8 @@ export class Bird {
     gravity: number;
     canvas: any;
 
+    frozen: boolean;
+
     constructor(canvas: any) {
         this.canvas = canvas;
         this.x = 100;
@@ -17,6 +19,7 @@ export class Bird {
         this.size = 30;
         this.velocity = 0;
         this.gravity = 0.25;
+        this.frozen = false;
     }
 
     show() {
@@ -25,20 +28,26 @@ export class Bird {
     }
 
     update() {
-        if(this.y > this.canvas.height-this.size/2){
-            this.y = this.canvas.height-this.size/2;
-            this.velocity = 0;
+        if(!this.frozen){
+            if(this.y > this.canvas.height-this.size/2){
+                this.y = this.canvas.height-this.size/2;
+                this.velocity = 0;
+            }
+            else if(this.y < 0+this.size/2){
+                this.y = 0+this.size/2;
+                this.velocity = 0;
+            }
+            else{
+                this.velocity += this.gravity;
+                if(this.velocity > 10) this.velocity = 10;
+                else if(this.velocity < -10) this.velocity = -10;
+                this.y += this.velocity;
+            }
         }
-        else if(this.y < 0+this.size/2){
-            this.y = 0+this.size/2;
-            this.velocity = 0;
-        }
-        else{
-            this.velocity += this.gravity;
-            if(this.velocity > 10) this.velocity = 10;
-            else if(this.velocity < -10) this.velocity = -10;
-            this.y += this.velocity;
-        }
+    }
+
+    freeze() {
+        this.frozen = true;
     }
 
     flap() {
