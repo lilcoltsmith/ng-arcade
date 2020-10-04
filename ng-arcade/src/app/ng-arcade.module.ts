@@ -1,23 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { NgArcadeRoutingModule } from './ng-arcade-routing.module';
+import { NgArcadeComponent } from './ng-arcade.component';
 import { MinesweeperModule } from './minesweeper/minesweeper.module';
 import { FlappyComponent } from './flappy/flappy.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    NgArcadeComponent,
     FlappyComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    NgArcadeRoutingModule,
     MinesweeperModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [NgArcadeComponent],
+  exports: [
+    FlappyComponent,
+    MinesweeperModule
+  ]
 })
-export class AppModule { }
+export class NgArcadeModule { }
